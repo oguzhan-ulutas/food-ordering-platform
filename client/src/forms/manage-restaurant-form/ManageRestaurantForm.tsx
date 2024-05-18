@@ -2,6 +2,9 @@ import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import DetailsSection from "./DetailsSection";
+import { Separator } from "@/components/ui/separator";
+import CuisinesSection from "./CuisinesSection";
 
 const formSchema = z
   .object({
@@ -58,9 +61,13 @@ const ManageRestaurantForm = ({ restaurant, onSave, isLoading }: Props) => {
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
+        //onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-8 bg-gray-50 p-10 rounded-lg"
-      ></form>
+      >
+        <DetailsSection />
+        <Separator />
+        <CuisinesSection />
+      </form>
     </Form>
   );
 };
