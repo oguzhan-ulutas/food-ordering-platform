@@ -18,7 +18,7 @@ const MenuItemInput = ({ index, removeMenuItem }: Props) => {
   const { control } = useFormContext();
 
   return (
-    <div className="flex flex-row items-end gap-2">
+    <div className="flex flex-row items-end gap-2" key={index * 100}>
       <FormField
         control={control}
         name={`menuItems.${index}.name`}
