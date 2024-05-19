@@ -10,7 +10,7 @@ import CuisineCheckbox from "./CuisineCheckbox";
 
 const CuisinesSection = () => {
   const { control } = useFormContext();
-  console.log(control);
+
   return (
     <div className="space-y-2">
       <div>
