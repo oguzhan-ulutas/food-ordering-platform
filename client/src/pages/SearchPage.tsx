@@ -1,5 +1,5 @@
 import { useSearchRestaurants } from "@/api/RestaurantApi";
-import CuisineFilter from "@/components/CusineFilter";
+import CuisineFilter from "@/components/CuisineFilter";
 import PaginationSelector from "@/components/PaginationSelector";
 import SearchBar, { SearchForm } from "@/components/SearchBar";
 import SearchResultCard from "@/components/SearchResultCard";
