@@ -1,20 +1,28 @@
 import { useSearchRestaurants } from "@/api/RestaurantApi";
-import SearchBar from "@/components/SearchBar";
+import SearchBar, { SearchForm } from "@/components/SearchBar";
 import SearchResultCard from "@/components/SearchResultCard";
 import SearchResultInfo from "@/components/SearchResultsInfo";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-// export type SearchState = {
-//   searchQuery: string;
-//   page: number;
-//   selectedCuisines: string[];
-//   sortOption: string;
-// };
+export type SearchState = {
+  searchQuery: string;
+  page: number;
+  selectedCuisines: string[];
+  sortOption: string;
+};
 
 const SearchPage = () => {
   const { city } = useParams();
 
-  const { results, isLoading } = useSearchRestaurants(city);
+  const [searchState, setSearchState] = useState<SearchState>({
+    searchQuery: "",
+    page: 1,
+    selectedCuisines: [],
+    sortOption: "bestMatch",
+  });
+
+  const { results, isLoading } = useSearchRestaurants(searchState, city);
 
   if (isLoading) {
     <span>Loading ...</span>;
@@ -23,6 +31,22 @@ const SearchPage = () => {
   if (!results?.data || !city) {
     return <span>No results found</span>;
   }
+
+  const setSearchQuery = (searchFormData: SearchForm) => {
+    setSearchState((prevState) => ({
+      ...prevState,
+      searchQuery: searchFormData.searchQuery,
+      page: 1,
+    }));
+  };
+
+  const resetSearch = () => {
+    setSearchState((prevState) => ({
+      ...prevState,
+      searchQuery: "",
+      page: 1,
+    }));
+  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
@@ -46,20 +70,19 @@ const SearchPage = () => {
         />
         <div className="flex justify-between flex-col gap-3 lg:flex-row">
           <SearchResultInfo total={results.pagination.total} city={city} />
-          <SortOptionDropdown
+          {/* <SortOptionDropdown
             sortOption={searchState.sortOption}
             onChange={(value) => setSortOption(value)}
-          />
+          /> */}
         </div>
 
         {results.data.map((restaurant) => (
           <SearchResultCard restaurant={restaurant} />
         ))}
-        <PaginationSelector
+        {/* <PaginationSelector
           page={results.pagination.page}
           pages={results.pagination.pages}
-          onPageChange={setPage}
-        />
+          onPageChange={setPage}/> */}
       </div>
     </div>
   );
