@@ -1,5 +1,6 @@
 import { useSearchRestaurants } from "@/api/RestaurantApi";
 import SearchBar from "@/components/SearchBar";
+import SearchResultCard from "@/components/SearchResultCard";
 import SearchResultInfo from "@/components/SearchResultsInfo";
 import { useParams } from "react-router-dom";
 
