@@ -6,6 +6,7 @@ import myUserRoute from "./routes/MyUserRoute";
 import { v2 as cloudinary } from "cloudinary";
 import myRestaurantRoute from "./routes/MyRestaurantRoute";
 import restaurantRoute from "./routes/RestaurantRoutes";
+
 mongoose.connect(process.env.MONGODB as string).then(() => {
   console.log("Connected to DB!");
 });
